@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nl2sql-toolkit"
+version = "0.1.0"
+description = "Turn natural language into SQL and run it against real Postgres/MySQL/SQL Server databases. CLI + embeddable SDK, powered by any OpenRouter LLM."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Your Name" }]
+keywords = ["sql", "nl2sql", "llm", "database", "developer-tools", "openrouter"]
+dependencies = [
+    "SQLAlchemy>=2.0",
+    "requests>=2.31",
+    "python-dotenv>=1.0",
+    "click>=8.1",
+    "rich>=13.7",
+]
+
+[project.optional-dependencies]
+postgres = ["psycopg2-binary>=2.9"]
+mysql = ["PyMySQL>=1.1"]
+mssql = ["pyodbc>=5.1"]
+all = ["psycopg2-binary>=2.9", "PyMySQL>=1.1", "pyodbc>=5.1"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+nl2sql = "nl2sql.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["nl2sql*"]
